@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import type { Product } from "../models/product";
-import Catalog from "../../features/catalog/Catalog";
+import {  useState } from "react";
 import {
   Box,
   Container,
@@ -9,16 +7,12 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import NavBar from "./NavBar";
+import { Outlet } from "react-router-dom";
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
+
   const[darkMode,setDarkmode]=useState(true);
 
-  useEffect(() => {
-    fetch("https://localhost:5001/api/Product")
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
-  }, []);
 
   const toggleDarkMode=()=>
   {
@@ -35,22 +29,6 @@ function App() {
     },
   });
 
-  // const addProduct = () => {
-  //   setProducts(prevState => [
-  //     ...prevState,
-  //     {
-  //       id: prevState.length + 1,
-  //       name: "Product" + (prevState.length + 1),
-  //       price: prevState.length * 100 + 100,
-  //       description: "Test description",
-  //       pictureUrl: "https://via.placeholder.com/150",
-  //       type: "Test type",
-  //       brand: "Test brand",
-  //       quantityInStock: 10
-  //     }
-  //   ]);
-  // };
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -65,12 +43,7 @@ function App() {
         }}
       >
         <Container maxWidth="xl" sx={{ marginTop: 8 }}>
-          {/* <Box sx={{ display:"flex", justifyContent:'center', marginY:3 }}>
-          <Typography variant='h4'>Re Store</Typography>
-          <Button variant="contained" onClick={addProduct}>Add Product</Button>
-        </Box> */}
-
-          <Catalog products={products} />
+          <Outlet/>
         </Container>
       </Box>
     </ThemeProvider>
