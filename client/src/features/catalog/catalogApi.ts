@@ -7,10 +7,10 @@ export const catalogApi = createApi({
   baseQuery: baseQueryWithErrorHandling,
   endpoints: (builder) => ({
     fetchProducts: builder.query<Product[],void>({
-      query: () => 'product',
+      query: () => 'products',
     }),
     fetchProductDetails:builder.query<Product,number>({
-        query:(profuctId)=>`product/${profuctId}`
+        query:(profuctId)=>`products/${profuctId}`
     })
   }),
 });
