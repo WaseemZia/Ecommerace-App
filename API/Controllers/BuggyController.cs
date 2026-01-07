@@ -15,7 +15,7 @@ public class BuggyController: BaseApiController
         public IActionResult GetBadRequest()
         {
             // client side error (400) 
-            return BadRequest("This is not request");
+            return BadRequest("This is not good request");
         }
         [HttpGet("unauthorized")]
         public IActionResult GetUnauthorized()
